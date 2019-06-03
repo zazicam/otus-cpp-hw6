@@ -3,11 +3,9 @@
 // TCell
 
 template<typename T, T d>
-TCell<T,d>::TCell(OwnContainer<T,d>* m){
-	this->m=m;
-	this->x=-1;
-	this->y=-1;
+TCell<T,d>::TCell(OwnContainer<T,d>* m) : x(-1), y(-1), m(m) {
 }
+
 template<typename T, T d>
 TCell<T,d>::TCell(const TCell& c){
 	this->m=c.m;
@@ -20,6 +18,7 @@ void TCell<T,d>::SetXY(int x,int y){
 	this->x=x;
 	this->y=y;
 }
+
 template<typename T, T d>
 TCell<T,d>& TCell<T,d>::operator=(const T& value){
 	T& v=m->search(x,y);
@@ -29,6 +28,7 @@ TCell<T,d>& TCell<T,d>::operator=(const T& value){
 	}
 	return *this;
 }
+
 template<typename T, T d>
 bool TCell<T,d>::operator==(const T& value) const{
 	T v=m->search(x,y);
@@ -37,6 +37,7 @@ bool TCell<T,d>::operator==(const T& value) const{
 	}
 	return v==value;
 }
+
 template<typename T, T d>
 T TCell<T,d>::GetValue(void) const{
 	T v=m->search(x,y);
@@ -54,10 +55,9 @@ TCell<T,d>::operator T(void) const{
 //TRow
 
 template<typename T, T d>
-TRow<T,d>::TRow(OwnContainer<T,d>* m){
-	this->m=m;
-	x=0;
+TRow<T,d>::TRow(OwnContainer<T,d>* m) : x(0), m(m) {
 }
+
 template<typename T, T d>
 void TRow<T,d>::SetX(int x){
 	this->x=x;
@@ -129,8 +129,7 @@ void OwnContainer<T,d>::remove(int x,int y){
 //OwnIterator
 
 template<typename T, T d>
-OwnIterator<T,d>::OwnIterator(TIterator<T> it){
-	this->it=it;
+OwnIterator<T,d>::OwnIterator(TIterator<T> it) : it(it) {
 }
 
 template<typename T, T d>

@@ -33,16 +33,9 @@ class TRow{
 		void SetX(int x);
 		TCell<T,d> operator[](int y) const;
 	private:
-		OwnContainer<T,d>* m;
 		int x;
+		OwnContainer<T,d>* m;
 };
-
-//bool operator<(const std::pair<int,int>& v1,const std::pair<int,int>& v2){
-//	if (v1.first==v2.first) {
-//		return v1.second<v2.second;
-//	}
-//	return v1.first<v2.first;
-//}
 
 template <typename T>
 using TMap=std::map<std::pair<int,int>,T>;
