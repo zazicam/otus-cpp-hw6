@@ -1,7 +1,5 @@
 //---------------------------------------------------------------------------
-
-#ifndef MYMATRIX_HPP
-#define MYMATRIX_HPP
+#pragma once
 
 #include <tuple>
 #include <map>
@@ -97,5 +95,3 @@ class OwnIterator: public std::iterator<std::input_iterator_tag, T>
 
 template<typename T, T d>
 using Matrix = OwnContainer<T,d>;
-
-#endif // MYMATRIX_HPP
