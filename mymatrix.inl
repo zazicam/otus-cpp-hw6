@@ -90,7 +90,7 @@ TRow<T,d> OwnContainer<T,d>::operator[](int x) const{
 
 template<typename T, T d>
 size_t OwnContainer<T,d>::size() const{
-	return _m.size()+1;
+	return _m.size();
 }
 
 template<typename T, T d>
