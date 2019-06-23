@@ -3,7 +3,7 @@
 // TCell
 
 template<typename T, T d>
-TCell<T,d>::TCell(OwnContainer<T,d>* m) : x(-1), y(-1), m(m) {
+TCell<T,d>::TCell(int x, int y, OwnContainer<T,d>* m) : x(x), y(y), m(m) {
 }
 
 template<typename T, T d>
@@ -11,12 +11,6 @@ TCell<T,d>::TCell(const TCell& c){
 	this->m=c.m;
 	this->x=c.x;
 	this->y=c.y;
-}
-
-template<typename T, T d>
-void TCell<T,d>::SetXY(int x,int y){
-	this->x=x;
-	this->y=y;
 }
 
 template<typename T, T d>
@@ -55,18 +49,12 @@ TCell<T,d>::operator T() const{
 //TRow
 
 template<typename T, T d>
-TRow<T,d>::TRow(OwnContainer<T,d>* m) : x(0), m(m) {
-}
-
-template<typename T, T d>
-void TRow<T,d>::SetX(int x){
-	this->x=x;
+TRow<T,d>::TRow(int x, OwnContainer<T,d>* m) : x(x), m(m) {
 }
 
 template<typename T, T d>
 TCell<T,d> TRow<T,d>::operator[](int y) const{
-	TCell<T,d> c(m);
-	c.SetXY(x,y);
+	TCell<T,d> c(x,y, m);
 	return c;
 }
 //------------------------------------------------------------------------------
@@ -83,8 +71,7 @@ OwnContainer<T,d>::~OwnContainer() {
 
 template<typename T, T d>
 TRow<T,d> OwnContainer<T,d>::operator[](int x) const{
-	TRow<T,d> row((OwnContainer<T,d>*)this);
-	row.SetX(x);
+	TRow<T,d> row(x, (OwnContainer<T,d>*)this);
 	return row;
 }
 

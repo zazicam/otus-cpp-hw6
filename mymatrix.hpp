@@ -12,9 +12,8 @@ template<typename T, T d> class OwnContainer;
 template<typename T, T d>
 struct TCell{
 	public:
-		TCell(OwnContainer<T,d>* m);
+		TCell(int x, int y, OwnContainer<T,d>* m);
 		TCell(const TCell& c);
-		void SetXY(int x,int y);
 		TCell<T,d>& operator=(const T& value);
 		bool operator==(const T& value) const;
 		T GetValue() const;
@@ -28,8 +27,7 @@ struct TCell{
 template<typename T, T d>
 class TRow{
 	public:
-		TRow(OwnContainer<T,d>* m);
-		void SetX(int x);
+		TRow(int x, OwnContainer<T,d>* m);
 		TCell<T,d> operator[](int y) const;
 	private:
 		int x;
