@@ -9,6 +9,8 @@
 template<typename T, T d> class OwnIterator;
 template<typename T, T d> class OwnContainer;
 
+namespace internal {
+
 template<typename T, T d>
 struct TCell{
 	public:
@@ -34,6 +36,8 @@ class TRow{
 		OwnContainer<T,d>* m;
 };
 
+} // namespace internal
+
 template <typename T>
 using TMap=std::map<std::pair<int,int>,T>;
 
@@ -43,7 +47,7 @@ using TIterator=typename TMap<T>::iterator;
 template<typename T, T d>
 class OwnContainer
 {
-	friend class TCell<T,d>;
+	friend class internal::TCell<T,d>;
 public:
 
 	typedef OwnIterator<T,d> iterator;
@@ -57,7 +61,7 @@ public:
 
 	size_t size() const;
 
-	TRow<T,d> operator[](int x) const;
+	internal::TRow<T,d> operator[](int x) const;
 
 private:
 

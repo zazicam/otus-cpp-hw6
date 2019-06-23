@@ -1,20 +1,20 @@
 #include "mymatrix.hpp"
 
-// TCell
+// internal::TCell
 
 template<typename T, T d>
-TCell<T,d>::TCell(int x, int y, OwnContainer<T,d>* m) : x(x), y(y), m(m) {
+internal::TCell<T,d>::TCell(int x, int y, OwnContainer<T,d>* m) : x(x), y(y), m(m) {
 }
 
 template<typename T, T d>
-TCell<T,d>::TCell(const TCell& c){
+internal::TCell<T,d>::TCell(const TCell& c){
 	this->m=c.m;
 	this->x=c.x;
 	this->y=c.y;
 }
 
 template<typename T, T d>
-TCell<T,d>& TCell<T,d>::operator=(const T& value){
+internal::TCell<T,d>& internal::TCell<T,d>::operator=(const T& value){
 	T& v=m->search(x,y);
 	v=value;
 	if (v==d) {
@@ -24,7 +24,7 @@ TCell<T,d>& TCell<T,d>::operator=(const T& value){
 }
 
 template<typename T, T d>
-bool TCell<T,d>::operator==(const T& value) const{
+bool internal::TCell<T,d>::operator==(const T& value) const{
 	T v=m->search(x,y);
 	if (v==d) {
 		m->remove(x,y);
@@ -33,7 +33,7 @@ bool TCell<T,d>::operator==(const T& value) const{
 }
 
 template<typename T, T d>
-T TCell<T,d>::GetValue() const{
+T internal::TCell<T,d>::GetValue() const{
 	T v=m->search(x,y);
 	if (v==d) {
 		m->remove(x,y);
@@ -41,20 +41,20 @@ T TCell<T,d>::GetValue() const{
 	return v;
 }
 template<typename T, T d>
-TCell<T,d>::operator T() const{
+internal::TCell<T,d>::operator T() const{
 	return GetValue();
 }
 //------------------------------------------------------------------------------
 
-//TRow
+//internal::TRow
 
 template<typename T, T d>
-TRow<T,d>::TRow(int x, OwnContainer<T,d>* m) : x(x), m(m) {
+internal::TRow<T,d>::TRow(int x, OwnContainer<T,d>* m) : x(x), m(m) {
 }
 
 template<typename T, T d>
-TCell<T,d> TRow<T,d>::operator[](int y) const{
-	TCell<T,d> c(x,y, m);
+internal::TCell<T,d> internal::TRow<T,d>::operator[](int y) const{
+	internal::TCell<T,d> c(x,y, m);
 	return c;
 }
 //------------------------------------------------------------------------------
@@ -70,8 +70,8 @@ OwnContainer<T,d>::~OwnContainer() {
 }
 
 template<typename T, T d>
-TRow<T,d> OwnContainer<T,d>::operator[](int x) const{
-	TRow<T,d> row(x, (OwnContainer<T,d>*)this);
+::internal::TRow<T,d> OwnContainer<T,d>::operator[](int x) const{
+	::internal::TRow<T,d> row(x, (OwnContainer<T,d>*)this);
 	return row;
 }
 
@@ -82,12 +82,12 @@ size_t OwnContainer<T,d>::size() const{
 
 template<typename T, T d>
 OwnIterator<T,d> OwnContainer<T,d>::begin(){
-		return iterator(_m.begin());
+	return iterator(_m.begin());
 }
 
 template<typename T, T d>
 OwnIterator<T,d> OwnContainer<T,d>::end(){
-		return iterator(_m.end());
+	return iterator(_m.end());
 }
 
 template<typename T, T d>
