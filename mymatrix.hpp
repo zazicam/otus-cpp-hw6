@@ -23,7 +23,6 @@ struct TCell{
 		int x;
 		int y;
 		OwnContainer<T,d>* m;
-
 };
 
 template<typename T, T d>

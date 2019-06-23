@@ -90,7 +90,7 @@ TRow<T,d> OwnContainer<T,d>::operator[](int x) const{
 
 template<typename T, T d>
 size_t OwnContainer<T,d>::size() const{
-	return _m.size();
+	return _m.size()+1;
 }
 
 template<typename T, T d>
@@ -116,9 +116,7 @@ T& OwnContainer<T,d>::search(int x,int y){
 
 template<typename T, T d>
 void OwnContainer<T,d>::remove(int x,int y){
-	std::pair<int,int> p;
-	p.first=x;
-	p.second=y;
+	std::pair<int,int> p{x,y};
 	if (_m.count(p)) {
 		_m.erase(p);
 	}
