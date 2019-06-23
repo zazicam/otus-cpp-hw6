@@ -17,8 +17,8 @@ struct TCell{
 		void SetXY(int x,int y);
 		TCell<T,d>& operator=(const T& value);
 		bool operator==(const T& value) const;
-		T GetValue(void) const;
-		operator T(void) const;
+		T GetValue() const;
+		operator T() const;
 	private:
 		int x;
 		int y;
@@ -39,6 +39,7 @@ class TRow{
 
 template <typename T>
 using TMap=std::map<std::pair<int,int>,T>;
+
 template <typename T>
 using TIterator=typename TMap<T>::iterator;
 
@@ -50,14 +51,14 @@ public:
 
 	typedef OwnIterator<T,d> iterator;
 
-	OwnContainer(void);
+	OwnContainer();
 
-	virtual ~OwnContainer(void);
+	virtual ~OwnContainer();
 
-	iterator begin(void);
-	iterator end(void);
+	iterator begin();
+	iterator end();
 
-	size_t size(void) const;
+	size_t size() const;
 
 	TRow<T,d> operator[](int x) const;
 
@@ -80,11 +81,13 @@ class OwnIterator: public std::iterator<std::input_iterator_tag, T>
 		OwnIterator(const OwnIterator &it);
 		bool operator!=(OwnIterator const& other) const;
 		bool operator==(OwnIterator const& other) const;
-		std::tuple<int,int,T> operator*(void) const;
-		OwnIterator& operator++(void);
+		std::tuple<int,int,T> operator*() const;
+		OwnIterator& operator++();
 	private:
 		TIterator<T> it;
 };
 
 template<typename T, T d>
 using Matrix = OwnContainer<T,d>;
+
+#include "mymatrix.inl"
