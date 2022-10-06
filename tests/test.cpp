@@ -63,3 +63,15 @@ TEST(mt5, test1)
 	} 
 	ASSERT_TRUE(ss.str()=="002 016 024 ");
 }
+
+TEST(mt6, test1)
+{
+	Matrix<int, 0> matrix; 
+	matrix[0][0] = 1;
+	matrix[0][1] = 2;
+	matrix[0][2] = 4;
+	matrix[0][0] = 0;
+
+	ASSERT_TRUE(matrix.size()==2);
+}
+

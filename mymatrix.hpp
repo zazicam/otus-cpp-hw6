@@ -1,6 +1,7 @@
 //---------------------------------------------------------------------------
 #pragma once
 
+#include <cstddef>
 #include <tuple>
 #include <map>
 #include <utility>
